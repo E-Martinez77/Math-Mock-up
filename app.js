@@ -46,12 +46,71 @@ function multiply(howMany) {
     review.push(index.q);
   });
 
-  console.log(
+  alert(
     `You got ${correct.length} out of ${
       total.length
     } correct,\nYou scored ${Math.round(
       (correct.length / total.length) * 100
-    )}%\n ${
+    )}%\n${
+      correct.length == total.length
+        ? "Wow! You got them all!"
+        : "Here are the problems you missed\n" + review
+    }`
+  );
+}
+
+function divide(howMany) {
+  const total = [];
+  const correct = [];
+  const incorrect = [];
+  const review = [];
+
+  for (let i = 0; i < howMany; i++) {
+    let num1 = Math.floor(Math.random() * 12) + 1;
+    let num2 = Math.floor(Math.random() * 12) + 1;
+
+    if (
+      num1 == 1 ||
+      num1 == 10 ||
+      num1 == 11 ||
+      num2 == 1 ||
+      num2 == 10 ||
+      num2 == 11
+    ) {
+      i--;
+    } else {
+      let answer = num1;
+      let question = `${num1 * num2} ÷ ${num2} = ?`;
+      let userQuestion = prompt(question);
+
+      let newObj = {
+        q: question,
+        k: answer,
+        a: userQuestion,
+      };
+
+      total.push(newObj);
+    }
+  }
+
+  total.forEach((index) => {
+    if (index.a == index.k) {
+      correct.push(index);
+    } else {
+      incorrect.push(index);
+    }
+  });
+
+  incorrect.forEach((index) => {
+    review.push(index.q);
+  });
+
+  alert(
+    `You got ${correct.length} out of ${
+      total.length
+    } correct,\nYou scored ${Math.round(
+      (correct.length / total.length) * 100
+    )}%\n${
       correct.length == total.length
         ? "Wow! You got them all!"
         : "Here are the problems you missed\n" + review

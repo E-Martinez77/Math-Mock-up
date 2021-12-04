@@ -83,9 +83,20 @@ start.addEventListener("click", () => {
     `What would you like to practice?\nadd\nsubtract\nmultiply\ndivide`
   );
 
-  let howMany = prompt(`How many rounds would you like to do?`);
-
-  console.log(`Prompts: ${getStarted}, ${howMany}`);
-
-  newGame(getStarted, howMany);
+  if (
+    getStarted == "add" ||
+    getStarted == "subtract" ||
+    getStarted == "multiply" ||
+    getStarted == "divide"
+  ) {
+    let howMany = prompt(`How many rounds would you like to do?`);
+    let num = parseInt(howMany);
+    if (num == typeof "number") {
+      alert("Please try again.");
+    } else {
+      newGame(getStarted, howMany);
+    }
+  } else {
+    alert("Sorry, that currently is not an option. Please try again.");
+  }
 });
